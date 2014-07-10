@@ -12,12 +12,12 @@ using OpenQA.Selenium.IE;
 
 namespace BlueSource_Selenium_Project.Pages
 {
-    class Page
+    public class Page
     {
         /***************************************************
          *  VARIABLES 
          ***************************************************/
-
+        
         /***************************************************
          *  CONSTRUCTORS
          ***************************************************/
@@ -29,30 +29,34 @@ namespace BlueSource_Selenium_Project.Pages
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
+       
 
         // Open a browser and navigate to the given URL.
-        protected void openURL(String url, object driver, String browserName)
+        public void openURL(String url, object driver, String browserName)
         {
             switch (browserName.ToUpper())
             {
                 case "FIREFOX":
                     FirefoxDriver fireFoxDriver = (FirefoxDriver) driver;
                     fireFoxDriver.Navigate().GoToUrl(url);
+                    //fireFoxDriver.Dispose();
                     break;
                 case "CHROME":
                     ChromeDriver chromeDriver = (ChromeDriver) driver;
                     chromeDriver.Navigate().GoToUrl(url);
+                    //chromeDriver.Dispose();
                     break;
                 default: // Internet Explorer
                     InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver) driver;
                     internetExplorerDriver.Navigate().GoToUrl(url);
+                   // internetExplorerDriver.Dispose();
                     break;
             }
             
         }
 
         // Navigate to the next page.
-        protected void navigateForwards(object driver, String browserName)
+        public void navigateForwards(object driver, String browserName)
         {
             switch (browserName.ToUpper())
             {
@@ -73,7 +77,7 @@ namespace BlueSource_Selenium_Project.Pages
         }
 
         // Navigate to the previous page.
-        protected void navigateBackwards(object driver, String browserName)
+        public void navigateBackwards(object driver, String browserName)
         {
             switch (browserName.ToUpper())
             {
@@ -92,6 +96,7 @@ namespace BlueSource_Selenium_Project.Pages
             }
 
         }
+       
 
     }
 }
