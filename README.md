@@ -1,3 +1,4 @@
 c_sharp_bluesource
 ==================
-*Set up later*
+Welcome to the Orasi C# Bluesource project!
+
