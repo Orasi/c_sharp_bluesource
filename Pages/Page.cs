@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
-//using OpenQA.Selenium.Firefox;
-//using OpenQA.Selenium.Chrome;
-//using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 //using OpenQA.Selenium.Support.UI;
 
 namespace BlueSource_Selenium_Project.Pages
@@ -29,5 +29,69 @@ namespace BlueSource_Selenium_Project.Pages
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
+
+        // Open a browser and navigate to the given URL.
+        protected void openURL(String url, object driver, String browserName)
+        {
+            switch (browserName.ToUpper())
+            {
+                case "FIREFOX":
+                    FirefoxDriver fireFoxDriver = (FirefoxDriver) driver;
+                    fireFoxDriver.Navigate().GoToUrl(url);
+                    break;
+                case "CHROME":
+                    ChromeDriver chromeDriver = (ChromeDriver) driver;
+                    chromeDriver.Navigate().GoToUrl(url);
+                    break;
+                default: // Internet Explorer
+                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver) driver;
+                    internetExplorerDriver.Navigate().GoToUrl(url);
+                    break;
+            }
+            
+        }
+
+        // Navigate to the next page.
+        protected void navigateForwards(object driver, String browserName)
+        {
+            switch (browserName.ToUpper())
+            {
+                case "FIREFOX":
+                    FirefoxDriver fireFoxDriver = (FirefoxDriver)driver;
+                    fireFoxDriver.Navigate().Forward();
+                    break;
+                case "CHROME":
+                    ChromeDriver chromeDriver = (ChromeDriver)driver;
+                    chromeDriver.Navigate().Forward();
+                    break;
+                default: // Internet Explorer
+                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver)driver;
+                    internetExplorerDriver.Navigate().Forward();
+                    break;
+            }
+
+        }
+
+        // Navigate to the previous page.
+        protected void navigateBackwards(object driver, String browserName)
+        {
+            switch (browserName.ToUpper())
+            {
+                case "FIREFOX":
+                    FirefoxDriver fireFoxDriver = (FirefoxDriver)driver;
+                    fireFoxDriver.Navigate().Back();
+                    break;
+                case "CHROME":
+                    ChromeDriver chromeDriver = (ChromeDriver)driver;
+                    chromeDriver.Navigate().Back();
+                    break;
+                default: // Internet Explorer
+                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver)driver;
+                    internetExplorerDriver.Navigate().Back();
+                    break;
+            }
+
+        }
+
     }
 }
