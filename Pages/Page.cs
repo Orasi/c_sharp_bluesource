@@ -29,6 +29,8 @@ namespace BlueSource_Selenium_Project.Pages
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
+
+        // Open a browser and navigate to the given URL.
         protected void openURL(String url, object driver, String browserName)
         {
             switch (browserName.ToUpper())
@@ -47,6 +49,48 @@ namespace BlueSource_Selenium_Project.Pages
                     break;
             }
             
+        }
+
+        // Navigate to the next page.
+        protected void navigateForwards(object driver, String browserName)
+        {
+            switch (browserName.ToUpper())
+            {
+                case "FIREFOX":
+                    FirefoxDriver fireFoxDriver = (FirefoxDriver)driver;
+                    fireFoxDriver.Navigate().Forward();
+                    break;
+                case "CHROME":
+                    ChromeDriver chromeDriver = (ChromeDriver)driver;
+                    chromeDriver.Navigate().Forward();
+                    break;
+                default: // Internet Explorer
+                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver)driver;
+                    internetExplorerDriver.Navigate().Forward();
+                    break;
+            }
+
+        }
+
+        // Navigate to the previous page.
+        protected void navigateBackwards(object driver, String browserName)
+        {
+            switch (browserName.ToUpper())
+            {
+                case "FIREFOX":
+                    FirefoxDriver fireFoxDriver = (FirefoxDriver)driver;
+                    fireFoxDriver.Navigate().Back();
+                    break;
+                case "CHROME":
+                    ChromeDriver chromeDriver = (ChromeDriver)driver;
+                    chromeDriver.Navigate().Back();
+                    break;
+                default: // Internet Explorer
+                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver)driver;
+                    internetExplorerDriver.Navigate().Back();
+                    break;
+            }
+
         }
 
     }
