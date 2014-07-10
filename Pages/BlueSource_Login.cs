@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueSource_Selenium_Project.Pages
 {
-    class BlueSource_Login : Bluesource
+    public class BlueSource_Login : Bluesource
     {
         /***************************************************
         *  VARIABLES 
@@ -23,6 +23,8 @@ namespace BlueSource_Selenium_Project.Pages
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
+        
+        // Login to Bluesource
         protected void login(String userName, String password)
         {
 
