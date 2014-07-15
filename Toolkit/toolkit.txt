@@ -1,0 +1,147 @@
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Automation
+{
+    class OSI
+    {
+        public class Utilities
+        {
+            public static void Wait(int WaitTimeInSeconds)
+            {
+                var MilSec = WaitTimeInSeconds * 1000;
+                System.Threading.Thread.Sleep(MilSec);
+            }
+
+            public static void Wait(int WaitTimeInSeconds, int WaitTimeInMilliSeconds)
+            {
+                var MilSec = WaitTimeInSeconds * 1000;
+                var TotMilSec = MilSec + WaitTimeInMilliSeconds;
+                System.Threading.Thread.Sleep(MilSec);
+            }
+
+            
+        }
+
+        public class Forms
+        {
+            public static void MsgBox(string StringToDisplay)
+            {
+                MessageBox.Show(StringToDisplay);
+            }
+        }
+
+        public class Excel
+        {
+        }
+
+        public class Web
+        {
+            public static IWebDriver WebDriver;
+
+            public static void NavigateToURL(string URL)
+            {
+                WebDriver.Navigate().GoToUrl(URL);
+            }
+
+            public static void CloseBrowser()
+            {
+                WebDriver.Close();
+            }
+
+            public class Sync
+            {
+                public static void SyncByID(string ObjectID, short TimeoutInSeconds)
+                {
+                    var x = "";
+                    var t = 0;
+                    Console.WriteLine("Syncing on object by ID: " + ObjectID);
+                    bool throwtimeout = true;
+                    while (t < TimeoutInSeconds)
+                    {
+                        try
+                        {
+                            Console.Write(".");
+                            IWebElement we = WebDriver.FindElement(By.Id(ObjectID));
+                            x = we.Location.X.ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            //Console.Write(e.ToString());
+                        }
+                        if (x != "")
+                        {
+                            Console.Write("Element Found!");
+                            throwtimeout = false;
+                            break;
+                        }
+                        System.Threading.Thread.Sleep(1000);
+                        t++;
+                        //assertTrue(dialog.isDisplayed())
+                    }
+                    if (throwtimeout)
+                    {
+                        Console.WriteLine("Timeout of " + t + " Seconds Reached!");
+                    }
+                }
+            }
+
+            public class Edit
+            {
+                public static void SetTextByID(string ObjectID, string TextToSet)
+                {
+                    IWebElement we = WebDriver.FindElement(By.Id(ObjectID));
+                    we.SendKeys(TextToSet);
+                }
+
+                public static string GetTextByID(string ObjectID)
+                {
+                    IWebElement we = WebDriver.FindElement(By.Id(ObjectID));
+                    return we.GetAttribute("value");
+                }
+            }
+
+            public class Button
+            {
+                public static void ClickByXPath(string XPath)
+                {
+                    IWebElement we = WebDriver.FindElement(By.Name(XPath));
+                    we.Click();
+                }
+
+                public static void ClickByName(string Name)
+                {
+                    IWebElement we = WebDriver.FindElement(By.Name(Name));
+                    we.Click();
+                }
+
+                public static void ClickByID(string ObjectID)
+                {
+                    IWebElement we = WebDriver.FindElement(By.Id(ObjectID));
+                    we.Click();
+                }
+            }
+
+            public class Table
+            {
+            }
+
+
+ 
+
+
+        }
+    }
+
+}
+
+     
+
+
+
