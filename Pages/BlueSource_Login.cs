@@ -40,20 +40,25 @@ namespace CSharp_Blusource_Selenium.Pages
         {
             String userNameEditFieldID = "";
             String passwordEditFieldID = "";
+            String loginButtonClassName = "";
 
             try
             {
                 // Grab the ID of the fields.
                 userNameEditFieldID = "employee_username";
                 passwordEditFieldID = "employee_password";
+                loginButtonClassName = "btn";
 
                 // Set each field.
-                OSI.Web.Edit.SetTextByID(userNameEditFieldID, userName);
-                OSI.Web.Edit.SetTextByID(passwordEditFieldID, password);
+                OSI.Web.Edit.SetTextByID(userNameEditFieldID, userName, this.getDriver());
+                OSI.Web.Edit.SetTextByID(passwordEditFieldID, password, this.getDriver());
+
+                // Click login button.
+                OSI.Web.Button.ClickByClassName(loginButtonClassName, this.getDriver());
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error trying to login " + OSI.Utilities.ExceptionToDetailedString(e));
+                Console.WriteLine("Error trying to login. " + OSI.Utilities.ExceptionToDetailedString(e));
             }
         }
     }

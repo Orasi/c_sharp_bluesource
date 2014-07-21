@@ -12,6 +12,13 @@ namespace CSharp_Blusource_Selenium.Toolkit
 {
    class OSI
     {
+      /* 
+       public static IWebDriver WebDriver;
+       public OSI(IWebDriver Driver)
+       {
+           WebDriver = Driver;
+       }
+       */
         public class Utilities
         {
 
@@ -66,6 +73,11 @@ namespace CSharp_Blusource_Selenium.Toolkit
             public static void NavigateToURL(string URL)
             {
                 WebDriver.Navigate().GoToUrl(URL);
+            }
+
+            public static void NavigateToURL(string URL, IWebDriver driver)
+            {
+               driver.Navigate().GoToUrl(URL);
             }
             
             public static void CloseBrowser()
@@ -175,6 +187,12 @@ namespace CSharp_Blusource_Selenium.Toolkit
                     we.SendKeys(TextToSet);
                 }
 
+                public static void SetTextByID(string ObjectID, string TextToSet, IWebDriver driver)
+                {
+                    IWebElement we = driver.FindElement(By.Id(ObjectID));
+                    we.SendKeys(TextToSet);
+                }
+
                 public static void SetTextToMultiByID(string ObjectID, string TextToSet)
                 {
                     ReadOnlyCollection<IWebElement> cwe = WebDriver.FindElements(By.Id(ObjectID));
@@ -226,6 +244,30 @@ namespace CSharp_Blusource_Selenium.Toolkit
                 public static void ClickByCSSPath(string CSSPath)
                 {
                     IWebElement we = WebDriver.FindElement(By.CssSelector(CSSPath));
+                    we.Click();
+                }
+
+                public static void ClickByLinkText(string linkText)
+                {
+                    IWebElement we = WebDriver.FindElement(By.LinkText(linkText));
+                    we.Click();
+                }
+
+                public static void ClickByLinkText(string linkText, IWebDriver driver)
+                {
+                    IWebElement we = driver.FindElement(By.LinkText(linkText));
+                    we.Click();
+                }
+
+                public static void ClickByTagName(string tagName, IWebDriver driver)
+                {
+                    IWebElement we = driver.FindElement(By.TagName(tagName));
+                    we.Click();
+                }
+
+                public static void ClickByClassName(string className, IWebDriver driver)
+                {
+                    IWebElement we = driver.FindElement(By.ClassName(className));
                     we.Click();
                 }
             }

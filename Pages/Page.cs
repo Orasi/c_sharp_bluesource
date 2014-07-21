@@ -19,6 +19,7 @@ namespace CSharp_Blusource_Selenium.Pages
          *  VARIABLES 
          ***************************************************/
         public IWebDriver Driver;
+       // public OSI osi;
 
         /***************************************************
          *  CONSTRUCTORS
@@ -26,6 +27,7 @@ namespace CSharp_Blusource_Selenium.Pages
         public Page(IWebDriver Driver)
         {
             this.Driver = Driver;
+          //  osi = new OSI(Driver);
         }
         /***************************************************
          *  GETTERS/SETTERS
@@ -45,7 +47,9 @@ namespace CSharp_Blusource_Selenium.Pages
         public void openURL(String url)
         {
            // this.Driver.Navigate().GoToUrl(url);
-            OSI.Web.NavigateToURL(url);
+           // OSI.Web.NavigateToURL(url);
+           OSI.Web.NavigateToURL(url, this.getDriver());
+           // osi.Web.NavigateToURL(url);
         }
 
         // Navigate to the next page.
