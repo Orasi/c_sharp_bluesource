@@ -8,95 +8,74 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
-//using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Support.UI;
+using CSharp_Blusource_Selenium.Toolkit;
 
-namespace BlueSource_Selenium_Project.Pages
+namespace CSharp_Blusource_Selenium.Pages
 {
     public class Page
     {
         /***************************************************
          *  VARIABLES 
          ***************************************************/
-        
+        public IWebDriver Driver;
+
         /***************************************************
          *  CONSTRUCTORS
          ***************************************************/
-
+        public Page(IWebDriver Driver)
+        {
+            this.Driver = Driver;
+        }
         /***************************************************
          *  GETTERS/SETTERS
          ***************************************************/
+        public IWebDriver getDriver(){
+            return this.Driver;
+        }
 
+        public void setDriver(IWebDriver Driver){
+            this.Driver = Driver;
+        }
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
-       
 
         // Open a browser and navigate to the given URL.
-        public void openURL(String url, object driver, String browserName)
+        public void openURL(String url)
         {
-            switch (browserName.ToUpper())
-            {
-                case "FIREFOX":
-                    FirefoxDriver fireFoxDriver = (FirefoxDriver) driver;
-                    fireFoxDriver.Navigate().GoToUrl(url);
-                    //fireFoxDriver.Dispose();
-                    break;
-                case "CHROME":
-                    ChromeDriver chromeDriver = (ChromeDriver) driver;
-                    chromeDriver.Navigate().GoToUrl(url);
-                    //chromeDriver.Dispose();
-                    break;
-                default: // Internet Explorer
-                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver) driver;
-                    internetExplorerDriver.Navigate().GoToUrl(url);
-                   // internetExplorerDriver.Dispose();
-                    break;
-            }
-            
+           // this.Driver.Navigate().GoToUrl(url);
+            OSI.Web.NavigateToURL(url);
         }
 
         // Navigate to the next page.
-        public void navigateForwards(object driver, String browserName)
+        public void navigateForwards()
         {
-            switch (browserName.ToUpper())
-            {
-                case "FIREFOX":
-                    FirefoxDriver fireFoxDriver = (FirefoxDriver)driver;
-                    fireFoxDriver.Navigate().Forward();
-                    break;
-                case "CHROME":
-                    ChromeDriver chromeDriver = (ChromeDriver)driver;
-                    chromeDriver.Navigate().Forward();
-                    break;
-                default: // Internet Explorer
-                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver)driver;
-                    internetExplorerDriver.Navigate().Forward();
-                    break;
-            }
-
+            this.Driver.Navigate().Forward();
         }
 
         // Navigate to the previous page.
-        public void navigateBackwards(object driver, String browserName)
+        public void navigateBackwards()
         {
-            switch (browserName.ToUpper())
-            {
-                case "FIREFOX":
-                    FirefoxDriver fireFoxDriver = (FirefoxDriver)driver;
-                    fireFoxDriver.Navigate().Back();
-                    break;
-                case "CHROME":
-                    ChromeDriver chromeDriver = (ChromeDriver)driver;
-                    chromeDriver.Navigate().Back();
-                    break;
-                default: // Internet Explorer
-                    InternetExplorerDriver internetExplorerDriver = (InternetExplorerDriver)driver;
-                    internetExplorerDriver.Navigate().Back();
-                    break;
-            }
-
+            this.Driver.Navigate().Back();
         }
-       
+
+        // Wait specified amount of time.
+        public void wait(int WaitTimeInSeconds)
+        {
+            OSI.Utilities.Wait(WaitTimeInSeconds);
+        }
+
+        public void wait(int WaitTimeInSeconds, int WaitTimeInMilliseconds){
+            OSI.Utilities.Wait(WaitTimeInSeconds, WaitTimeInMilliseconds);
+        }
+
+        // Get random number.
+        public int getRandomNumber(int minimumNumber, int maxNumber)
+        {
+            return OSI.Utilities.RandomNumber(minimumNumber, maxNumber);
+        }
+
 
     }
 }

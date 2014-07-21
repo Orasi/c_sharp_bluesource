@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Automation
+namespace CSharp_Blusource_Selenium.Toolkit
 {
-    class OSI
+   class OSI
     {
         public class Utilities
         {
@@ -38,6 +38,12 @@ namespace Automation
                     return getrandom.Next(min, max);
                 }
             }
+
+            public static String ExceptionToDetailedString(Exception e)
+            {
+                String errorString = "Error: " + e.Message;
+                return errorString;
+            }
         }
 
         public class Forms
@@ -61,7 +67,7 @@ namespace Automation
             {
                 WebDriver.Navigate().GoToUrl(URL);
             }
-
+            
             public static void CloseBrowser()
             {
                 WebDriver.Close();

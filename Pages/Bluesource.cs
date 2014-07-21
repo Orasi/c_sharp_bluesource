@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.UI;
+using CSharp_Blusource_Selenium.Toolkit;
 
-namespace BlueSource_Selenium_Project.Pages
+namespace CSharp_Blusource_Selenium.Pages
 {
     public class Bluesource : Page
     {
         /***************************************************
         *  VARIABLES 
         ***************************************************/
-        protected String websiteURL;
+        private String websiteURL;
         /***************************************************
          *  CONSTRUCTORS
          ***************************************************/
-        public Bluesource()
+        public Bluesource(IWebDriver Driver) : base(Driver)
         {
             this.websiteURL = "http://bluesourcestaging.herokuapp.com/login";
         }
@@ -35,5 +42,9 @@ namespace BlueSource_Selenium_Project.Pages
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
+        public void navigateToLoginPage()
+        {
+            this.openURL(this.getWebsiteURL());
+        }
     }
 }
