@@ -18,27 +18,18 @@ namespace CSharp_Blusource_Selenium.Pages
         /***************************************************
          *  VARIABLES 
          ***************************************************/
-        public IWebDriver Driver;
-       // public OSI osi;
 
         /***************************************************
          *  CONSTRUCTORS
          ***************************************************/
-        public Page(IWebDriver Driver)
+        public Page()
         {
-            this.Driver = Driver;
-          //  osi = new OSI(Driver);
+          
         }
         /***************************************************
          *  GETTERS/SETTERS
          ***************************************************/
-        public IWebDriver getDriver(){
-            return this.Driver;
-        }
 
-        public void setDriver(IWebDriver Driver){
-            this.Driver = Driver;
-        }
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
@@ -46,22 +37,19 @@ namespace CSharp_Blusource_Selenium.Pages
         // Open a browser and navigate to the given URL.
         public void openURL(String url)
         {
-           // this.Driver.Navigate().GoToUrl(url);
-           // OSI.Web.NavigateToURL(url);
-           OSI.Web.NavigateToURL(url, this.getDriver());
-           // osi.Web.NavigateToURL(url);
+           OSI.Web.NavigateToURL(url);
         }
 
         // Navigate to the next page.
         public void navigateForwards()
         {
-            this.Driver.Navigate().Forward();
+            OSI.Web.NavigateForward();
         }
 
         // Navigate to the previous page.
         public void navigateBackwards()
         {
-            this.Driver.Navigate().Back();
+           OSI.Web.NavigateBackward();
         }
 
         // Wait specified amount of time.
@@ -80,6 +68,11 @@ namespace CSharp_Blusource_Selenium.Pages
             return OSI.Utilities.RandomNumber(minimumNumber, maxNumber);
         }
 
+        // Close the browser.
+        public void closeBrowser()
+        {
+            OSI.Web.CloseBrowser();
+        }
 
     }
 }

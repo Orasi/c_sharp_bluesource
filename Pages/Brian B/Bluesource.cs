@@ -19,12 +19,15 @@ namespace CSharp_Blusource_Selenium.Pages
         *  VARIABLES 
         ***************************************************/
         private String websiteURL;
+        private String websiteLoginURL;
+
         /***************************************************
          *  CONSTRUCTORS
          ***************************************************/
-        public Bluesource(IWebDriver Driver) : base(Driver)
+        public Bluesource()
         {
-            this.websiteURL = "http://bluesourcestaging.herokuapp.com/login";
+            this.websiteLoginURL = "http://bluesourcestaging.herokuapp.com/login";
+            this.websiteURL = "http://bluesourcestaging.herokuapp.com/";
         }
         /***************************************************
          *  GETTERS/SETTERS
@@ -39,10 +42,25 @@ namespace CSharp_Blusource_Selenium.Pages
             this.websiteURL = websiteURL;
         }
 
+        public String getWebsiteLoginURL()
+        {
+            return this.websiteLoginURL;
+        }
+
+        public void setWebsiteLoginURL(String websiteLoginURL)
+        {
+            this.websiteLoginURL = websiteLoginURL;
+        }
+
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
         public void navigateToLoginPage()
+        {
+            this.openURL(this.getWebsiteLoginURL());
+        }
+
+        public void navigateToWebsite()
         {
             this.openURL(this.getWebsiteURL());
         }

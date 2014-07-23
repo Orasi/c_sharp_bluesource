@@ -5,33 +5,109 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Remote;
 using CSharp_Blusource_Selenium.Pages;
+using CSharp_Blusource_Selenium.Toolkit;
+
+/*********************************************************************************************************************************************************************
+ * TEST INFORMATION
+ * Username to use: company.admin
+ * Password: Anything will work, I use 1234
+ * 
+ * When you first log in you should land at the employees screen.
+ * 
+ * Click the add button to add a new employee.
+ * 
+ * Fill out the relevant form with any data that you would like.  
+ * 
+ * Submit form.
+ * 
+ * Search for the newly created employee in the seach bar.
+ * 
+ * Validate that the employee exists in the employee table -Click on the employee to go to employee detail screen.
+ * 
+ * Validate information is consistent with what you entered in form.
+ * 
+******************************************************************************************************************************************************************** */
 
 namespace CSharp_Blusource_Selenium
 {
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestMethod1()
+        static int RnNum;
+        static string SeleniumGridIP;
+
+        static String userName;
+        static String password;
+
+        static String employeeUserName;
+        static String employeeFirstName;
+        static String employeeLastName;
+        static String employeeEmail;
+
+        static BlueSource_Login bsLogin;
+        static BlueSource_EmployeeSearch bsEmployeeSearch;
+
+        [ClassInitialize]
+        public static void StartItUp(TestContext TC)
         {
-            String userName = "company.admin";
-            String password = "1234";
+            RnNum = OSI.Utilities.RandomNumber(1000, 9999);
+            SeleniumGridIP = "http://10.238.242.50:4444/wd/hub";
 
-            IWebDriver WebDriver;
-            WebDriver = new FirefoxDriver();
+            userName = "company.admin";
+            password = "1234";
 
-            BlueSource_Login bsLogin = new BlueSource_Login(WebDriver);
-            bsLogin.navigateToLoginPage();
-            bsLogin.loginToBlueSource(userName, password);
+            employeeUserName = "cSharpScript" + RnNum;
+            employeeFirstName = "cSharp" + RnNum;
+            employeeLastName = "Script" + RnNum;
+            employeeEmail = "Shield.Knight" + RnNum + "@orasi.com";
 
-            bsLogin.wait(10);
+            //OSI.Forms.MsgBox(System.Environment.GetEnvironmentVariable("PATH"));
+            //OSI.Forms.MsgBox("%HOMEPATH%");
+            OSI.Web.WebDriver = new FirefoxDriver();
+            //OSI.Web.WebDriver = new ChromeDriver();
+            //OSI.Web.WebDriver = new RemoteWebDriver(new Uri(SeleniumGridIP), DesiredCapabilities.Firefox());
 
-            WebDriver.Close();
-            WebDriver.Quit();
+            bsLogin = new BlueSource_Login();
+            bsEmployeeSearch = new BlueSource_EmployeeSearch();
         }
 
-        
+        [TestMethod]
+        public void NavigateToBlueSource()
+        {
+            bsLogin.navigateToLoginPage();
+            Assert.IsTrue(bsLogin.IsOnLogInPage());
+        }
+
+        [TestMethod]
+        public void LoginToBlueSource()
+        {
+            bsLogin.loginToBlueSource(userName, password);
+            Assert.IsTrue(bsLogin.IsLoggedIn());
+        }
+
+        [TestMethod]
+        public void AddEmployee()
+        {
+            bsEmployeeSearch.addEmployee(employeeUserName, employeeFirstName, employeeLastName, employeeEmail);
+        }
+
+        [TestMethod]
+        public void SearchForEmployee()
+        {
+
+        }
+
+        [ClassCleanup]
+        public static void ShutErDown()
+        {
+            bsLogin.wait(10);
+            bsEmployeeSearch.LogOut();
+            bsEmployeeSearch.closeBrowser();
+        }
+
+
     }
 
 
