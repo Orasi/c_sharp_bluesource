@@ -10,19 +10,13 @@ using System.Windows.Forms;
 
 namespace CSharp_Blusource_Selenium.Toolkit
 {
-   class OSI
+    class OSI
     {
-      /* 
-       public static IWebDriver WebDriver;
-       public OSI(IWebDriver Driver)
-       {
-           WebDriver = Driver;
-       }
-       */
+        /***************************************************
+         * UTILITIES
+         ***************************************************/
         public class Utilities
         {
-
-
             public static void Wait(int WaitTimeInSeconds)
             {
                 var MilSec = WaitTimeInSeconds * 1000;
@@ -53,6 +47,9 @@ namespace CSharp_Blusource_Selenium.Toolkit
             }
         }
 
+        /***************************************************
+         *  FORMS
+         ***************************************************/
         public class Forms
         {
             public static void MsgBox(string StringToDisplay)
@@ -60,12 +57,33 @@ namespace CSharp_Blusource_Selenium.Toolkit
                 MessageBox.Show(StringToDisplay);
             }
 
-         }
+            // Uses a 2 dimensional list of element IDs and the input for each element to fill out a form.
+            public static void fillFormByID(string[,] elementIDsAndInputs)
+            {
+                string elementID = "";
+                string elementInput = "";
 
+                for (int row = 0; row < elementIDsAndInputs.Length; row++)
+                {
+                    elementID = elementIDsAndInputs[row, 0] + "";
+                    elementInput = elementIDsAndInputs[row, 1] + "";
+
+                    OSI.Web.Edit.SetTextByID(elementID, elementInput);
+                }
+            }
+
+        }
+
+        /***************************************************
+         *  EXCEL
+         ***************************************************/
         public class Excel
         {
         }
 
+        /***************************************************
+         *  WEB
+         ***************************************************/
         public class Web
         {
             public static IWebDriver WebDriver;
@@ -75,11 +93,16 @@ namespace CSharp_Blusource_Selenium.Toolkit
                 WebDriver.Navigate().GoToUrl(URL);
             }
 
-            public static void NavigateToURL(string URL, IWebDriver driver)
+            public static void NavigateForward()
             {
-               driver.Navigate().GoToUrl(URL);
+                WebDriver.Navigate().Forward();
             }
-            
+
+            public static void NavigateBackward()
+            {
+                WebDriver.Navigate().Back();
+            }
+
             public static void CloseBrowser()
             {
                 WebDriver.Close();
@@ -87,6 +110,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
 
             public class Sync
             {
+                // Looks for an Element by it's ID and waits for it to appear in the browser for the amount of time specified.
                 public static bool SyncByID(string ObjectID, short TimeoutInSeconds)
                 {
                     OSI.Utilities.Wait(0, 500);
@@ -129,6 +153,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
 
                 }
 
+                // Looks for an Element by it's CSSPath and waits for it to appear in the browser for the amount of time specified.
                 public static bool SyncByCSSPath(string CSSPath, short TimeoutInSeconds)
                 {
                     OSI.Utilities.Wait(0, 500);
@@ -150,13 +175,13 @@ namespace CSharp_Blusource_Selenium.Toolkit
                         }
                         if (x != "")
                         {
-                            if (int.Parse(x)>0)
+                            if (int.Parse(x) > 0)
                             {
-                            Console.Write("Element Found!");
-                            timeoutreached = false;
-                            break;
+                                Console.Write("Element Found!");
+                                timeoutreached = false;
+                                break;
                             }
-                         
+
                         }
                         System.Threading.Thread.Sleep(1000);
                         t++;
@@ -187,18 +212,12 @@ namespace CSharp_Blusource_Selenium.Toolkit
                     we.SendKeys(TextToSet);
                 }
 
-                public static void SetTextByID(string ObjectID, string TextToSet, IWebDriver driver)
-                {
-                    IWebElement we = driver.FindElement(By.Id(ObjectID));
-                    we.SendKeys(TextToSet);
-                }
-
                 public static void SetTextToMultiByID(string ObjectID, string TextToSet)
                 {
                     ReadOnlyCollection<IWebElement> cwe = WebDriver.FindElements(By.Id(ObjectID));
                     foreach (IWebElement we in cwe)
                     {
-                       we.SendKeys(TextToSet); 
+                        we.SendKeys(TextToSet);
                     }
                 }
 
@@ -253,21 +272,15 @@ namespace CSharp_Blusource_Selenium.Toolkit
                     we.Click();
                 }
 
-                public static void ClickByLinkText(string linkText, IWebDriver driver)
+                public static void ClickByTagName(string tagName)
                 {
-                    IWebElement we = driver.FindElement(By.LinkText(linkText));
+                    IWebElement we = WebDriver.FindElement(By.TagName(tagName));
                     we.Click();
                 }
 
-                public static void ClickByTagName(string tagName, IWebDriver driver)
+                public static void ClickByClassName(string className)
                 {
-                    IWebElement we = driver.FindElement(By.TagName(tagName));
-                    we.Click();
-                }
-
-                public static void ClickByClassName(string className, IWebDriver driver)
-                {
-                    IWebElement we = driver.FindElement(By.ClassName(className));
+                    IWebElement we = WebDriver.FindElement(By.ClassName(className));
                     we.Click();
                 }
             }
@@ -327,7 +340,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
                     return CurCell.Text;
 
 
-                    
+
                 }
             }
 
@@ -348,7 +361,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
 
                     return Exists;
 
-                   
+
                 }
             }
 
@@ -357,7 +370,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
 
 }
 
-     
+
 
 
 

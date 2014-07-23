@@ -22,8 +22,7 @@ namespace CSharp_Blusource_Selenium.Pages
         /***************************************************
          *  CONSTRUCTORS
          ***************************************************/
-        public BlueSource_Login(IWebDriver Driver)
-            : base(Driver)
+        public BlueSource_Login()
         {
 
         }
@@ -50,16 +49,26 @@ namespace CSharp_Blusource_Selenium.Pages
                 loginButtonClassName = "btn";
 
                 // Set each field.
-                OSI.Web.Edit.SetTextByID(userNameEditFieldID, userName, this.getDriver());
-                OSI.Web.Edit.SetTextByID(passwordEditFieldID, password, this.getDriver());
+                OSI.Web.Edit.SetTextByID(userNameEditFieldID, userName);
+                OSI.Web.Edit.SetTextByID(passwordEditFieldID, password);
 
                 // Click login button.
-                OSI.Web.Button.ClickByClassName(loginButtonClassName, this.getDriver());
+                OSI.Web.Button.ClickByClassName(loginButtonClassName);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error trying to login. " + OSI.Utilities.ExceptionToDetailedString(e));
             }
+        }
+
+        public Boolean IsOnLogInPage()
+        {
+            return OSI.Web.Sync.SyncByID("employee_password", 10);
+        }
+
+        public Boolean IsLoggedIn()
+        {
+            return OSI.Web.Sync.SyncByID("employee_preferences_resourcesPerPage", 10);
         }
     }
 }
