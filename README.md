@@ -1,7 +1,6 @@
 c_sharp_bluesource
 ==================
-Welcome to the Orasi C# Selenium Bluesource project!  To create tests, grab the toolkit and the pages you need from the folders.
-
+Welcome to the Orasi C# Selenium Bluesource project!  To create tests, grab the toolkit and the pages you need from the folders.  
 
 This project is using a 3 tiered system for developing code/scripts:
 
@@ -25,6 +24,10 @@ This project is using a 3 tiered system for developing code/scripts:
       each step with a glance (ex: LoginPage.Login (userName,Password) vs Web.getObject("userName_Field").SetText(userName) etc..).
       Tests should be easy to create because all of the fine details that you would normally have to code/script
       are located in each pages' page object.
+      
+      
+      INSTALLATION:
+      
       
       
 HELPFUL INFORMATION:
