@@ -1,6 +1,7 @@
 c_sharp_bluesource
 ==================
-Welcome to the Orasi C# Selenium Bluesource project!
+Welcome to the Orasi C# Selenium Bluesource project!  To create tests, grab the toolkit and the pages you need from the folders.
+
 
 This project is using a 3 tiered system for developing code/scripts:
 
