@@ -25,11 +25,9 @@ This project is using a 3 tiered system for developing code/scripts:
       Tests should be easy to create because all of the fine details that you would normally have to code/script
       are located in each pages' page object.
       
-      
-      INSTALLATION:
-      
-      
-      
+INSTALLATION:
+
+
 HELPFUL INFORMATION:
 
   * Visual Studio Express Download ( http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx )
