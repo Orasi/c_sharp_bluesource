@@ -23,7 +23,7 @@ This project is using a 3 tiered system for developing code/scripts:
       are located in each pages' page object.
       
       
-Helpful Information:
+HELPFUL INFORMATION:
 
 Visual Studio Express Download ( http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx )
 
