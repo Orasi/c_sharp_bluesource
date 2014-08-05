@@ -26,7 +26,8 @@ This project is using a 3 tiered system for developing code/scripts:
       are located in each pages' page object.
       
 INSTALLATION:
-
+1.  Download and install Visual Studio Express (you may have to register/create an account).
+2.  Download Selenium and follow the Selenium installation instructions below.
 
 HELPFUL INFORMATION:
 
