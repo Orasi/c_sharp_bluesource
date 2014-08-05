@@ -25,7 +25,9 @@ This project is using a 3 tiered system for developing code/scripts:
       Tests should be easy to create because all of the fine details that you would normally have to code/script
       are located in each pages' page object.
       
+
 INSTALLATION:
+
 1.  Download and install Visual Studio Express (you may have to register/create an account).
 2.  Download Selenium and follow the Selenium installation instructions below.
 
