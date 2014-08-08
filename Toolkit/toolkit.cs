@@ -63,7 +63,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
                 string elementID = "";
                 string elementInput = "";
 
-                for (int row = 0; row < elementIDsAndInputs.Length; row++)
+                for (int row = 0; row < elementIDsAndInputs.GetLength(0); row++)
                 {
                     elementID = elementIDsAndInputs[row, 0] + "";
                     elementInput = elementIDsAndInputs[row, 1] + "";
@@ -86,7 +86,25 @@ namespace CSharp_Blusource_Selenium.Toolkit
          ***************************************************/
         public class Web
         {
+            // Initialize these variables at test level before running tests.
             public static IWebDriver WebDriver;
+            public static IJavaScriptExecutor jse/* = (IJavaScriptExecutor)WebDriver*/;
+
+            // Scroll the browser up or down.
+            public static void scrollUpwards()
+            {
+                jse.ExecuteScript("window.scrollTo(0,-500)", "");
+                //jse.ExecuteScript("scroll(0, -500);");
+                //jse.ExecuteScript("scrollBy(0,-500);");
+            }
+
+            public static void scrollDownwards()
+            {
+                jse.ExecuteScript("window.scrollTo(0,500)", "");
+                //jse.ExecuteScript("scroll(0, 500);");
+                //jse.ExecuteScript("scrollBy(0,500);");
+            }
+            
 
             public static void NavigateToURL(string URL)
             {
@@ -330,7 +348,7 @@ namespace CSharp_Blusource_Selenium.Toolkit
             {
                 public static string FindRecordWithRowColByCSSPath(string CSSPath, int row, int col)
                 {
-
+                    
                     IWebElement table = WebDriver.FindElement(By.CssSelector(CSSPath));
                     ReadOnlyCollection<IWebElement> allRows = table.FindElements(By.TagName("tr"));
 

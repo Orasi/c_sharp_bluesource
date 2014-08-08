@@ -58,14 +58,15 @@ namespace CSharp_Blusource_Selenium
             userName = "company.admin";
             password = "1234";
 
-            employeeUserName = "cSharpScript" + RnNum;
-            employeeFirstName = "cSharp" + RnNum;
+            employeeUserName = "CSharpScript" + RnNum;
+            employeeFirstName = "Csharp" + RnNum;
             employeeLastName = "Script" + RnNum;
             employeeEmail = "Shield.Knight" + RnNum + "@orasi.com";
 
             //OSI.Forms.MsgBox(System.Environment.GetEnvironmentVariable("PATH"));
             //OSI.Forms.MsgBox("%HOMEPATH%");
             OSI.Web.WebDriver = new FirefoxDriver();
+            OSI.Web.jse = (IJavaScriptExecutor)OSI.Web.WebDriver;
             //OSI.Web.WebDriver = new ChromeDriver();
             //OSI.Web.WebDriver = new RemoteWebDriver(new Uri(SeleniumGridIP), DesiredCapabilities.Firefox());
 
@@ -95,6 +96,13 @@ namespace CSharp_Blusource_Selenium
 
         [TestMethod]
         public void SearchForEmployee()
+        {
+           String foundName = bsEmployeeSearch.searchForEmployee(employeeFirstName);
+           Assert.AreEqual(employeeFirstName, foundName);
+        }
+
+        [TestMethod]
+        public void CodeTester()
         {
 
         }
