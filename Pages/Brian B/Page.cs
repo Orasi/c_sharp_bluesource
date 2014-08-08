@@ -34,6 +34,17 @@ namespace CSharp_Blusource_Selenium.Pages
          *  FUNCTIONS
          ***************************************************/
 
+        // Scroll the browser up or down.
+        public void scrollUpwards()
+        {
+            OSI.Web.scrollUpwards();
+        }
+
+        public void scrollDownwards()
+        {
+            OSI.Web.scrollDownwards();
+        }
+
         // Open a browser and navigate to the given URL.
         public void openURL(String url)
         {
@@ -72,7 +83,7 @@ namespace CSharp_Blusource_Selenium.Pages
         public void closeBrowser()
         {
             OSI.Web.CloseBrowser();
+            OSI.Web.WebDriver.Quit();
         }
-
     }
 }
