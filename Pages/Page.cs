@@ -34,6 +34,19 @@ namespace CSharp_Blusource_Selenium.Pages
          *  FUNCTIONS
          ***************************************************/
 
+		 /*Brian - suggestion that's up for discussion.  All of these methods are calling a method that is the same or amazingly similarly-named from the Web object, so
+					I would suggest we use a property for read-only access to that object, and therefore those methods.  If the code isn't adding reporting or output,
+					then there might not be a reason to have these.  Also allows access to the Web object's other methods(If any. Need to check Web object class file)
+					
+					Example:
+					public <WebType>  Web
+					{
+						get 
+						{
+							return OSI.Web;
+						}
+					}
+		 */
         // Scroll the browser up or down.
         public void scrollUpwards()
         {
@@ -63,6 +76,11 @@ namespace CSharp_Blusource_Selenium.Pages
            OSI.Web.NavigateBackward();
         }
 
+		
+		
+		/*
+			These are similar to the above, only we would provide access to the OSI.Utilities object(if needed).  Just depends on what we think the coders would need.
+		*/
         // Wait specified amount of time.
         public void wait(int WaitTimeInSeconds)
         {
