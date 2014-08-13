@@ -105,11 +105,13 @@ namespace CSharp_Blusource_Selenium.Pages
 		 /*
 			Ties in to previous statements.  Just unsure of the design here, as it's basically the same method, just using different hard-coded strings that can be set to the same value.
 		 */
+        //Navigates to the login page.
         public void navigateToLoginPage()
         {
             this.openURL(this.getWebsiteLoginURL());
         }
 
+        // Navigates to website's home page.
         public void navigateToWebsite()
         {
             this.openURL(this.getWebsiteURL());

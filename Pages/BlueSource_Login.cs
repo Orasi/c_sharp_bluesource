@@ -61,11 +61,13 @@ namespace CSharp_Blusource_Selenium.Pages
             }
         }
 
+        // Determines if the current screen on the browser is the login page.
         public Boolean IsOnLogInPage()
         {
             return OSI.Web.Sync.SyncByID("employee_password", 10);
         }
 
+        // Determines if you are logged in to bluesource.
         public Boolean IsLoggedIn()
         {
             return OSI.Web.Sync.SyncByID("employee_preferences_resourcesPerPage", 10);
