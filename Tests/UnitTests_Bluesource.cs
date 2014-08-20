@@ -107,6 +107,12 @@ namespace CSharp_Blusource_Selenium
 
         }
 
+        [TestMethod]
+        public void SelectFirstEmployeeInSearch()
+        {
+            bsEmployeeSearch.clickOnFirstEmployeeInSearch();
+        }
+
         [ClassCleanup]
         public static void ShutErDown()
         {

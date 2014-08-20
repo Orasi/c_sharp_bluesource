@@ -72,7 +72,7 @@ namespace CSharp_Blusource_Selenium.Pages
 		/*
 			Since this is written in C# for people using C#, we (thankfully) get to use properties and not mutator methods.  Wo0t!
 		*/
-		#Region Properties
+		//#Region Properties
 			public String WebsiteURL
 			{
 				get
@@ -96,7 +96,7 @@ namespace CSharp_Blusource_Selenium.Pages
 					websiteLoginURL = value;
 				}
 			}
-		#Endregion
+		//#Endregion
 
         /***************************************************
          *  FUNCTIONS
@@ -108,13 +108,15 @@ namespace CSharp_Blusource_Selenium.Pages
         //Navigates to the login page.
         public void navigateToLoginPage()
         {
-            this.openURL(this.getWebsiteLoginURL());
+            //this.openURL(this.getWebsiteLoginURL());
+            this.openURL(this.WebsiteLoginURL);
         }
 
         // Navigates to website's home page.
         public void navigateToWebsite()
         {
-            this.openURL(this.getWebsiteURL());
+           // this.openURL(this.getWebsiteURL());
+            this.openURL(this.websiteLoginURL);
         }
 
         //should this be a bool?
