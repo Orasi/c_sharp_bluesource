@@ -120,7 +120,22 @@ namespace CSharp_Blusource_Selenium
         [TestMethod]
         public void GetDaysOffOfEmployee()
         {
-           
+            String[] daysOff = new String[3];
+
+            bsEmployeeDetails.openTimeOffDetails();
+
+            daysOff = bsEmployeeTimeOffDetails.getTimeOffDetailTotalsForEmployee();
+            System.Console.WriteLine("Day[0]: " + daysOff[0]);
+            System.Console.WriteLine("Day[1]: " + daysOff[1]);
+            System.Console.WriteLine("Day[2]: " + daysOff[2]);
+        }
+
+        [TestMethod]
+        public void navigateBackFromDayOffAndManageEmployee()
+        {
+            bsEmployeeTimeOffDetails.navigateBackwards();
+
+            bsEmployeeDetails.openManagementDetails();
         }
 
         [ClassCleanup]

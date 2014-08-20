@@ -46,9 +46,9 @@ namespace CSharp_Blusource_Selenium.Pages
                 System.Console.WriteLine(e.ToString());
             }
 
-            daysLeft[1] = sickDaysLeft;
-            daysLeft[2] = vacationDaysLeft;
-            daysLeft[3] = floatingHolidaysLeft;
+            daysLeft[0] = sickDaysLeft;
+            daysLeft[1] = vacationDaysLeft;
+            daysLeft[2] = floatingHolidaysLeft;
 
             return daysLeft;
         }

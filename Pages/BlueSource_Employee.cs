@@ -34,5 +34,20 @@ namespace CSharp_Blusource_Selenium.Pages
                 System.Console.WriteLine(e.ToString());
             }
         }
+
+        // Open management details for the selected employee.
+        public void openManagementDetails()
+        {
+            try
+            {
+                // Select the "Manage" view.
+                OSI.Web.Link.ClickByText("Manage");
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.openManagementDetails().");
+                System.Console.WriteLine(e.ToString());
+            }
+        }
     }
 }
