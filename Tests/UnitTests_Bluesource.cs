@@ -48,6 +48,8 @@ namespace CSharp_Blusource_Selenium
 
         static BlueSource_Login bsLogin;
         static BlueSource_EmployeeSearch bsEmployeeSearch;
+        static BlueSource_Employee bsEmployeeDetails;
+        static BlueSource_EmployeeTimeOff bsEmployeeTimeOffDetails;
 
         [ClassInitialize]
         public static void StartItUp(TestContext TC)
@@ -72,6 +74,8 @@ namespace CSharp_Blusource_Selenium
 
             bsLogin = new BlueSource_Login();
             bsEmployeeSearch = new BlueSource_EmployeeSearch();
+            bsEmployeeDetails = new BlueSource_Employee();
+            bsEmployeeTimeOffDetails = new BlueSource_EmployeeTimeOff();
         }
 
         [TestMethod]
@@ -111,6 +115,12 @@ namespace CSharp_Blusource_Selenium
         public void SelectFirstEmployeeInSearch()
         {
             bsEmployeeSearch.clickOnFirstEmployeeInSearch();
+        }
+
+        [TestMethod]
+        public void GetDaysOffOfEmployee()
+        {
+           
         }
 
         [ClassCleanup]
