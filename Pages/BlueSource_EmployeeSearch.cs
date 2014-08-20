@@ -126,20 +126,6 @@ namespace CSharp_Blusource_Selenium.Pages
             }
         }
 
-        public void getTimeDetailTotalsForEmployee()
-        {
-            try
-            {
-                String firstRowText = "";
-
-                firstRowText = OSI.Web.Table.FindRecordWithRowColByCSSPath("#resource-content > DIV.table-responsive > TABLE.table.table-bordered.table-condensed.table-hover", 2, 1);
-                OSI.Web.Link.ClickByText(firstRowText);
-            }
-            catch (Exception e)
-            {
-                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.clickOnFirstEmployeeInSearch().");
-                System.Console.WriteLine(e.ToString());
-            }
-        }
+       
     }
 }
