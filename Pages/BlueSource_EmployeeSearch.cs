@@ -33,6 +33,7 @@ namespace CSharp_Blusource_Selenium.Pages
         /***************************************************
          *  FUNCTIONS
          ***************************************************/
+        // Add employee to BlueSource
         public void addEmployee(string userName, string firstName, string lastName, string email)
         {
             try
@@ -74,11 +75,14 @@ namespace CSharp_Blusource_Selenium.Pages
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error trying to add employee. " + OSI.Utilities.ExceptionToDetailedString(e));
+                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.addEmployee().");
+                System.Console.WriteLine(e.ToString());
+                //Console.WriteLine("Error trying to add employee. " + OSI.Utilities.ExceptionToDetailedString(e));
             }
 
         }
 
+        // Search for Employee on BlueSource
         public String searchForEmployee(String userName)
         {
             String foundGuy = "";
@@ -92,14 +96,50 @@ namespace CSharp_Blusource_Selenium.Pages
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error trying to search for employee. " + OSI.Utilities.ExceptionToDetailedString(e));
+                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.searchForEmployee().");
+                System.Console.WriteLine(e.ToString());
+               // Console.WriteLine("Error trying to search for employee. " + OSI.Utilities.ExceptionToDetailedString(e));
             }
             return foundGuy;
         }
 
+        // Log out
         public void LogOut()
         {
             OSI.Web.Link.ClickByText("Logout");
+        }
+
+        // Click on the first name shown in the employee search table
+        public void clickOnFirstEmployeeInSearch()
+        {
+            try
+            {
+                String firstRowText = "";
+
+                firstRowText = OSI.Web.Table.FindRecordWithRowColByCSSPath("#resource-content > DIV.table-responsive > TABLE.table.table-bordered.table-condensed.table-hover", 2, 1);
+                OSI.Web.Link.ClickByText(firstRowText);
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.clickOnFirstEmployeeInSearch().");
+                System.Console.WriteLine(e.ToString());
+            }
+        }
+
+        public void getTimeDetailTotalsForEmployee()
+        {
+            try
+            {
+                String firstRowText = "";
+
+                firstRowText = OSI.Web.Table.FindRecordWithRowColByCSSPath("#resource-content > DIV.table-responsive > TABLE.table.table-bordered.table-condensed.table-hover", 2, 1);
+                OSI.Web.Link.ClickByText(firstRowText);
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.clickOnFirstEmployeeInSearch().");
+                System.Console.WriteLine(e.ToString());
+            }
         }
     }
 }
