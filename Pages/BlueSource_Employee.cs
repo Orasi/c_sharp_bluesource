@@ -49,5 +49,25 @@ namespace CSharp_Blusource_Selenium.Pages
                 System.Console.WriteLine(e.ToString());
             }
         }
+
+        // Tells if you're on the correct page or not.
+        public Boolean isOnEmployeePage()
+        {
+            Boolean onPage = false;
+
+            try
+            {
+                // Using two identifiers to avoid false positives from other pages.  The IDs in the CSS don't seem unique and may be on other pages.
+                onPage = OSI.Web.Sync.SyncByLinkText("username", 7);
+                onPage = OSI.Web.Sync.SyncByLinkText("role", 7);
+            }
+            catch(Exception e)
+            {
+                System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.isOnEmployeePage().");
+                System.Console.WriteLine(e.ToString());
+            }
+
+            return onPage;
+        }
     }
 }

@@ -312,7 +312,52 @@ namespace CSharp_Blusource_Selenium.Toolkit
 
                 }
 
+                // Looks for an Element by it's text and waits for it to appear in the browser for the amount of time specified.
+                public static bool SyncByLinkText(string linkText, short TimeoutInSeconds)
+                {
+                    OSI.Utilities.Wait(0, 500);
+                    var x = "";
+                    var t = 0;
+                    Console.WriteLine("Syncing on object by ID: " + linkText);
+                    bool timeoutreached = true;
+                    while (t < TimeoutInSeconds)
+                    {
+                        try
+                        {
+                            Console.Write(".");
+                            IWebElement we = WebDriver.FindElement(By.LinkText(linkText));
+                            x = we.Location.X.ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            //Console.Write(e.ToString());
+                        }
+                        if (x != "")
+                        {
+                            if (int.Parse(x) > 0)
+                            {
+                                Console.Write("Element Found!");
+                                timeoutreached = false;
+                                break;
+                            }
 
+                        }
+                        System.Threading.Thread.Sleep(1000);
+                        t++;
+                        //assertTrue(dialog.isDisplayed())
+                    }
+                    OSI.Utilities.Wait(0, 500);
+
+                    if (timeoutreached)
+                    {
+                        Console.WriteLine("Timeout of " + t + " Seconds Reached!");
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
             }
 
             public class Edit
