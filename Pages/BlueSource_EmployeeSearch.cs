@@ -47,7 +47,7 @@ namespace CSharp_Blusource_Selenium.Pages
 
                 // Wait for page to load completely.
                 OSI.Utilities.Wait(1);
-                
+
                 // Click add to bring up "Add Employee" form.
                 OSI.Web.Button.ClickByName(addButtonName);
 
@@ -92,13 +92,13 @@ namespace CSharp_Blusource_Selenium.Pages
                 OSI.Web.Edit.SetTextToMultiByID("search-bar", userName);
                 foundGuy = OSI.Web.Table.FindRecordWithRowColByCSSPath("#resource-content > DIV.table-responsive > TABLE.table.table-bordered.table-condensed.table-hover", 2, 1);
 
-                
+
             }
             catch (Exception e)
             {
                 System.Console.WriteLine("Unspecified exception in BlueSource_EmployeeSearch.searchForEmployee().");
                 System.Console.WriteLine(e.ToString());
-               // Console.WriteLine("Error trying to search for employee. " + OSI.Utilities.ExceptionToDetailedString(e));
+                // Console.WriteLine("Error trying to search for employee. " + OSI.Utilities.ExceptionToDetailedString(e));
             }
             return foundGuy;
         }
@@ -116,7 +116,11 @@ namespace CSharp_Blusource_Selenium.Pages
             {
                 String firstRowText = "";
 
+                // Grab first row and click on first name.
                 firstRowText = OSI.Web.Table.FindRecordWithRowColByCSSPath("#resource-content > DIV.table-responsive > TABLE.table.table-bordered.table-condensed.table-hover", 2, 1);
+
+                OSI.Utilities.Wait(5);
+                
                 OSI.Web.Link.ClickByText(firstRowText);
             }
             catch (Exception e)
@@ -126,6 +130,13 @@ namespace CSharp_Blusource_Selenium.Pages
             }
         }
 
-       
+        public Boolean isOnEmployeeSearchPage()
+        {
+            // Wait for the page to load.
+            return OSI.Web.Sync.SyncByID("ng-app", 7);
+
+        }
+
+
     }
 }
