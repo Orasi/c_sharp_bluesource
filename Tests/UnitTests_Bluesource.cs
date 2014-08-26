@@ -160,29 +160,42 @@ namespace CSharp_Blusource_Selenium
             bsEmployeeTimeOffDetails = new BlueSource_EmployeeTimeOff();
         }
 
-
         [TestMethod]
+        // Visual Studios Express lacks the options to control the order in which your tests runs and for some weird reason, will swap their order.
+        public void TestsInOrder()
+        {
+            NavigateToBlueSource();
+
+            LoginToBlueSource();
+
+            SelectFirstEmployeeInSearch();
+
+            GetDaysOffOfEmployee();
+
+            navigateBackFromDayOffAndManageEmployee();
+        }
+       // [TestMethod]
         public void NavigateToBlueSource()
         {
             bsLogin.navigateToLoginPage();
             Assert.IsTrue(bsLogin.IsOnLogInPage());
         }
 
-        [TestMethod]
+       // [TestMethod]
         public void LoginToBlueSource()
         {
             bsLogin.loginToBlueSource(userName, password);
             Assert.IsTrue(bsLogin.IsLoggedIn());
         }
 
-        [TestMethod]
+       // [TestMethod]
         public void SelectFirstEmployeeInSearch()
         {
             Assert.IsTrue(bsEmployeeSearch.isOnEmployeeSearchPage());
             bsEmployeeSearch.clickOnFirstEmployeeInSearch();
         }
 
-        [TestMethod]
+       // [TestMethod]
         public void GetDaysOffOfEmployee()
         {
             Assert.IsTrue(bsEmployeeDetails.isOnEmployeePage());
@@ -197,7 +210,7 @@ namespace CSharp_Blusource_Selenium
             System.Console.WriteLine("Day[2]: " + daysOff[2]);
         }
 
-        [TestMethod]
+       // [TestMethod]
         public void navigateBackFromDayOffAndManageEmployee()
         {
             bsEmployeeTimeOffDetails.navigateBackwards();
